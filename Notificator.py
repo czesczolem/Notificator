@@ -3,6 +3,7 @@ import smtplib
 from collections import OrderedDict
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+import os
 
 class Notificator:
 
@@ -11,7 +12,7 @@ class Notificator:
         Get connection from Outlook connection
         '''
 
-        self.mail = json.load(open("Notificator/mail_secrets.json"),
+        self.mail = json.load(open(os.path.abspath('..') + "/mail_secrets.json"),
                               object_pairs_hook=OrderedDict)
 
         self.conn = smtplib.SMTP(self.mail['SMTPserver'], int(self.mail['SMTPserverPort']))
